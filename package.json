@@ -9,6 +9,9 @@
   },
   "author": "Ridwan Ibraheem",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.2"
+  },
   "dependencies": {
     "express": "^4.17.3"
   }
