@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classify Images</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+<!-- 
+webcam.js - google opensorced to manage webcam in browser and tp convert images to tensors
+-->
+<script src="webcam.js"></script>
+<script src="rps-dataset.js"></script>
+
+<style>
+    .everything {
+        margin: auto;
+        width: 75%;
+        height: 90%;
+        padding: 10px;
+        border: 3px solid black; 
+    }
+    h1 {
+        text-align: center;
+    }
+    video {
+         display: block;
+         margin: auto;
+         transform: rotateY(180deg);
+         
+         }
+    .but {
+        margin-top: 1.5rem;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .samples {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        background-color: whitesmoke;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    .pred {
+        display: flex;
+        justify-content: space-evenly;  
+        margin-top: 2rem;
+        margin-bottom: 1rem 
+    }
+    .writ {
+        margin-top: 2rem;
+    }
+  
+</style>
+
+</head>
+<body> 
+    <div class="everything">
+   <h1>IMAGE CLASSIFICATION</h1>
+    <div>
+        <div class="vid">
+            <video autoplay playsinline muted id="wc" width="224" height="224"></video>
+        </div>
+    </div>
+
+    <div class="but">
+    <button type="button" id="0" style="background-color: lightblue;" onclick="handleButton(this)" >Group 1</button>
+	<button type="button" id="1" style="background-color: lightgreen" onclick="handleButton(this)" >Group 2</button>
+	<button type="button" id="2" style="background-color: grey;" onclick="handleButton(this)" >Group 3</button>
+    <button type="button" id="3" style="background-color: lightyellow;" onclick="handleButton(this)" >Group 4</button>
+    <button type="button" id="4" style="background-color: lightsalmon;" onclick="handleButton(this)" >Group 5</button>
+    </div>
+
+    <div class="samples">
+    <div id="group1samples">Group 1 Samples:</div>
+	<div id="group2samples">Group 2 Samples:</div>
+	<div id="group3samples">Group 3 Samples:</div>
+    <div id="group4samples">Group 4 Samples:</div>
+    <div id="group5samples">Group 5 Samples:</div>
+    </div>
+
+	<button type="button" id="train" style="background-color: brown; display: block; color: white; margin: auto;" onclick="doTraining()" >Train Network</button>
+
+    
+	<div class="pred">
+	<button type="button" id="startPredicting" style="background-color: green; color: white;" onclick="startPredicting()" >Start Predicting</button>
+	<button type="button" id="stopPredicting" style="background-color: red; color: white;" onclick="stopPredicting()" >Stop Predicting</button>
+    </div>
+
+	<div id="prediction" style="background-color: gray; color: white; text-align: center; width: 50%; margin: auto;"></div>
+
+    
+    <ol class="writ">
+        <lh> <strong>HOW TO USE:</strong></lh>
+        <li>Take pictures (as many as possible per group and about the same numbers) </li>
+        <li>Click "Train Network" and wait for about 5 seconds</li>
+        <li>Click "Start Predicting" to start predicting</li>
+        <li>Click "Stop Predicting" when you are done predicting</li>
+    </ol>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
